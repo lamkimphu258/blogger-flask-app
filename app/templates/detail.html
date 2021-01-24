@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block style %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/detail.css') }}">
+{% endblock %}
+
+{% block content %}
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.body }}</p>
+    <div class="comment">
+        <h2>Readers comment</h2>
+        {% for postComment in postComments %}
+            <p>{{ postComment.value }}</p> {{ p }}
+        {% endfor %}
+    </div>
+    {% if current_user.is_authenticated %}
+        <form action="" method="post" class="comment">
+            {{ form.value(size=100) }}
+            {{ form.submit() }}
+        </form>
+    {% endif %}
+{% endblock %}

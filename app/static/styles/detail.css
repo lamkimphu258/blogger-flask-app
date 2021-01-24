@@ -1,0 +1,30 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.post {
+    margin: 20px;
+}
+
+.post p {
+    text-align: justify;
+}
+
+h1, h2, p {
+    color: #05386B;
+}
+
+div.comment {
+    margin-top: 5px;
+    margin-right: auto;
+}
+
+form.comment {
+    margin-top: 20px;
+    margin-right: auto;
+}

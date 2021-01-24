@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/base.css') }}">
+    {% block style %}
+    {% endblock %}
+    <title>Blogger</title>
+</head>
+<body>
+{% block navbar %}
+    <div class="navbar">
+        <ul class="navbar-brand">
+            <li><a href="{{ url_for('index') }}">My Blogger</a></li>
+        </ul>
+        <ul class="navbar-nav right">
+            {% if current_user.is_anonymous %}
+                <li>Hello, Guest!</li>
+                <li><a href="{{ url_for('login') }}">Sign in</a></li>
+                <li><a href="{{ url_for('register') }}">Register</a></li>
+            {% else %}
+                <li>Hello, {{ current_user.firstname | capitalize }} {{ current_user.lastname | capitalize }}!</li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% endif %}
+        </ul>
+    </div>
+{% endblock %}
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+
+{% block page_title %}
+{% endblock %}
+
+<div class="content">
+    {% block content %}
+    {% endblock %}
+</div>
+</body>
+</html>

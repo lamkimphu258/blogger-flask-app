@@ -5,6 +5,10 @@
     background-color: #5CDB95;
 }
 
+html, body {
+    height: 100%;
+}
+
 h1 {
     text-align: center;
     margin-top: 10px;
@@ -68,4 +72,11 @@ h1, h2, p {
     outline: none;
     border-radius: 5px;
     padding: 10px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
 }

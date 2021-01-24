@@ -9,6 +9,16 @@
 {% endblock %}
 
 {% block content %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
     <div class="filter">
         <form action="" method="post">
             <select name="sort_by" id="sort_by">

@@ -27,7 +27,9 @@ def detail(post_id):
         db.session.commit()
 
     post = Post.query.filter_by(id=post_id).first()
-    post_comments = Comment.query.filter_by(post_id=post_id).all()
+    post_comments = Comment.query.join(User).filter(Comment.post_id == post_id).all()
+    # users = User.query.join(Comment).filter(Comment.post_id == post_id).all()
+    # app.logger.info(len(users))
 
     return render_template('detail.html', title='Post Detail', post=post, form=form, postComments=post_comments)
 
@@ -41,7 +43,7 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user is None or not user.check_password(form.password.data):
-            flash('Invalid email or password')
+            flash('Invalid email or password', category='error')
             return redirect(url_for('login'))
         login_user(user)
         return redirect(url_for('index'))
@@ -68,6 +70,6 @@ def register():
         db.session.add(user)
         db.session.commit()
         flash('Congratulations, you are now a registered user!')
-        return redirect(url_for('login'))
+        return redirect(url_for('index'))
 
     return render_template('register.html', title='Register', form=form)

@@ -30,14 +30,21 @@
     {% block page_title %}
     {% endblock %}
 
-    <div class="content">
-        {% block content %}
-        {% endblock %}
+    <div class="container-sidebar-content">
+        <div class="sidebar">
+            {% block sidebar %}
+            {% endblock %}
+        </div>
+
+        <div class="content">
+            {% block content %}
+            {% endblock %}
+        </div>
     </div>
 
     {% block footer %}
         <footer>
-            &copy All right reserved. This website is written in 2021.
+            <p style="background-color: initial;">&copy All right reserved. This website is written in 2021.</p>
         </footer>
     {% endblock %}
 </div>

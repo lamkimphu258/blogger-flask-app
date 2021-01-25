@@ -9,13 +9,26 @@ from app.models import User, Post, Comment
 @app.route('/')
 @app.route('/index', methods=['GET', 'POST'])
 def index():
+    tags = []
+    posts = Post.query.order_by(Post.timestamp.asc())
+
+    for post in posts:
+        if post.tags not in tags:
+            tags.append(post.tags)
+
     sort_by = request.form.get('sort_by')
+    items_tag = request.form.get('tags')
 
-    posts = Post.query.order_by(Post.timestamp.asc()).all()
     if sort_by == 'descending':
-        posts = Post.query.order_by(Post.timestamp.desc()).all()
+        posts = Post.query.order_by(Post.timestamp.desc())
+    if items_tag:
+        posts = Post.query.filter_by(tags=items_tag)
+    posts = posts.all()
 
-    return render_template('index.html', title='Home Page', posts=posts)
+    app.logger.info(len(posts))
+    app.logger.info(items_tag)
+
+    return render_template('index.html', title='Home Page', posts=posts, tags=tags)
 
 
 @app.route('/posts/<int:post_id>', methods=['GET', 'POST'])

@@ -30,6 +30,7 @@ class Post(db.Model):
     title = db.Column(db.String(50))
     body = db.Column(db.String(140))
     timestamp = db.Column(db.TIMESTAMP, index=True, default=datetime.now)
+    tags = db.Column(db.String(50))
     comments = db.relationship('Comment', backref='post', lazy='joined')
 
     def __repr__(self):
@@ -106,7 +107,8 @@ def seed_post():
                       'determining claimed user identity by checking user-provided evidence is called '
                       'authentication and the evidence which is provided by the user during process of '
                       'authentication is called a credential.',
-                 timestamp=datetime(2021, 1, 26, 12, 16, 30)
+                 timestamp=datetime(2021, 1, 26, 12, 16, 30),
+                 tags='security'
                  )
     db.session.add(post1)
 
@@ -132,7 +134,8 @@ def seed_post():
                       'the consumer has been authorized to use that resource. Authorization services are '
                       'implemented by the Security Server which can control access at the level of individual '
                       'files or programs.',
-                 timestamp=datetime(2021, 1, 22, 11, 16, 30)
+                 timestamp=datetime(2021, 1, 22, 11, 16, 30),
+                 tags='security'
                  )
     db.session.add(post2)
 
@@ -152,7 +155,8 @@ def seed_post():
                       'we take a look at the pros and cons of each framework, then explore which framework is the '
                       'best option in different cases, to give you everything you need to make the right decision and '
                       'create a successful app.',
-                 timestamp=datetime(2020, 6, 18, 7, 16, 35)
+                 timestamp=datetime(2020, 6, 18, 7, 16, 35),
+                 tags='technology'
                  )
     db.session.add(post3)
 
@@ -172,7 +176,8 @@ def seed_post():
                       'example, if the request to change email address can be performed with the GET method, '
                       'then a self-contained attack would look like this:<img '
                       'src="https://vulnerable-website.com/email/change?email=pwned@evil-user.net">',
-                 timestamp=datetime(2020, 6, 18, 7, 16, 35)
+                 timestamp=datetime(2020, 6, 18, 7, 16, 35),
+                 tags='security'
                  )
     db.session.add(post4)
 

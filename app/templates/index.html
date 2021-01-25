@@ -5,7 +5,29 @@
 {% endblock %}
 
 {% block page_title %}
-<h1>Welcome to my blog</h1>
+    <h1>Welcome to my blog</h1>
+{% endblock %}
+
+{% block sidebar %}
+    <form action="{{ url_for('index') }}" method="post">
+        <h2>Choose tags:</h2>
+        <select name="tags" id="tags">
+            {% for tag in tags %}
+                <option value="{{ tag }}">{{ tag }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit" style="margin-top: 10px;">Choose</button>
+    </form>
+
+    <div class="filter">
+        <form action="{{ url_for('index') }}" method="post">
+            <select name="sort_by" id="sort_by">
+                <option value="ascending">ascending</option>
+                <option value="descending">descending</option>
+            </select>
+            <button type="submit">Sort</button>
+        </form>
+    </div>
 {% endblock %}
 
 {% block content %}
@@ -19,15 +41,6 @@
         {% endif %}
     {% endwith %}
 
-    <div class="filter">
-        <form action="" method="post">
-            <select name="sort_by" id="sort_by">
-                <option value="ascending">Ascending</option>
-                <option value="descending">Descending</option>
-            </select>
-            <button type="submit">Sort</button>
-        </form>
-    </div>
     {% for post in posts %}
         <div class="post">
             <h2>{{ post.title }}</h2>

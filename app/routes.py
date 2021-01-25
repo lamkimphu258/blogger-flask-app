@@ -1,5 +1,6 @@
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, logout_user
+from sqlalchemy import func
 
 from app import app, db
 from app.forms import LoginForm, RegistrationForm, CommentForm
@@ -11,22 +12,26 @@ from app.models import User, Post, Comment
 def index():
     tags = []
     posts = Post.query.order_by(Post.timestamp.asc())
-
     for post in posts:
         if post.tags not in tags:
             tags.append(post.tags)
 
     sort_by = request.form.get('sort_by')
     items_tag = request.form.get('tags')
+    search = request.form.get('search') if request.form.get('search') else ''
+    search = "%{}%".format(search)
 
     if sort_by == 'descending':
         posts = Post.query.order_by(Post.timestamp.desc())
     if items_tag:
         posts = Post.query.filter_by(tags=items_tag)
+    if search:
+        posts = Post.query.filter(func.lower(Post.title).like(func.lower(search)))
     posts = posts.all()
 
     app.logger.info(len(posts))
     app.logger.info(items_tag)
+    app.logger.info(search)
 
     return render_template('index.html', title='Home Page', posts=posts, tags=tags)
 

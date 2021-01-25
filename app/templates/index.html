@@ -9,8 +9,14 @@
 {% endblock %}
 
 {% block sidebar %}
+    <h2 style="margin-bottom: 10px;">Filter by</h2>
     <form action="{{ url_for('index') }}" method="post">
-        <h2>Choose tags:</h2>
+        <label for="search">Search</label>
+        <input type="text" name="search">
+        <button type="submit" style="margin-top: 10px;">Search</button>
+    </form>
+    
+    <form action="{{ url_for('index') }}" method="post">
         <select name="tags" id="tags">
             {% for tag in tags %}
                 <option value="{{ tag }}">{{ tag }}</option>

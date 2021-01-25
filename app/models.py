@@ -174,7 +174,7 @@ def seed_post():
                       'vulnerable web site. In this situation, the attacker may not need to employ an external site, '
                       'and can directly feed victims a malicious URL on the vulnerable domain. In the preceding '
                       'example, if the request to change email address can be performed with the GET method, '
-                      'then a self-contained attack would look like this:<img '
+                      'then a self-contained attack would look like this:<img'
                       'src="https://vulnerable-website.com/email/change?email=pwned@evil-user.net">',
                  timestamp=datetime(2020, 6, 18, 7, 16, 35),
                  tags='security'

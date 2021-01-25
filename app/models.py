@@ -176,7 +176,7 @@ def seed_post():
                       'example, if the request to change email address can be performed with the GET method, '
                       'then a self-contained attack would look like this:<img'
                       'src="https://vulnerable-website.com/email/change?email=pwned@evil-user.net">',
-                 timestamp=datetime(2020, 6, 18, 7, 16, 35),
+                 timestamp=datetime(2020, 6, 14, 7, 16, 35),
                  tags='security'
                  )
     db.session.add(post4)

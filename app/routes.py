@@ -25,8 +25,12 @@ def index():
         posts = Post.query.order_by(Post.timestamp.desc()).all()
     elif items_tag is not None:
         posts = Post.query.filter_by(tags=items_tag).all()
-    elif search is not None:
+    elif search != "%%":
         posts = Post.query.filter(func.lower(Post.title).like(func.lower(search))).all()
+
+    app.logger.info(sort_by)
+    app.logger.info(items_tag)
+    app.logger.info(search)
 
     return render_template('index.html', title='Home Page', posts=posts, tags=tags)
 

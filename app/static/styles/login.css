@@ -1,9 +1,9 @@
 .content {
     max-width: 500px;
-    border: 1px solid black;
-    margin: 10px auto 0;
+    margin: 10p auto 0;
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px 10px #888888;
 }
 
 input[type="submit"] {
@@ -17,4 +17,8 @@ input[type="submit"] {
     margin-bottom: 10px;
     border-radius: 5px;
     background-color: darkred;
+}
+
+.container {
+    height: 100vh;
 }

@@ -23,9 +23,9 @@ def index():
 
     if sort_by == 'descending':
         posts = Post.query.order_by(Post.timestamp.desc()).all()
-    elif items_tag is not None:
+    if items_tag is not None:
         posts = Post.query.filter_by(tags=items_tag).all()
-    elif search != "%%":
+    if search != "%%":
         posts = Post.query.filter(func.lower(Post.title).like(func.lower(search))).all()
 
     app.logger.info(sort_by)
